@@ -1,0 +1,17 @@
+{
+  "_comment": "FOR DETAILED FORMAT LOOK AT https://docs.docker.com/reference/api/docker_remote_api_v1.16/#create-a-container",
+  "HostConfig": {
+    "Binds": [
+      "/c/Users/dockerfile/docker-php-nginx-case/nginx:/etc/nginx/sites-available",
+      "/c/Users/dockerfile/docker-php-nginx-case/src:/var/www"
+    ],
+    "PortBindings": {
+      "80/tcp": [
+        {
+          "HostIp": "0.0.0.0",
+          "HostPort": "80"
+        }
+      ]
+    }
+  }
+}
