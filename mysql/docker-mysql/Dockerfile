@@ -1,5 +1,5 @@
 FROM phusion/baseimage:0.9.16
-MAINTAINER Harsh Vakharia <harshjv@gmail.com>
+MAINTAINER mikey.zhaopeng <user.zhaopeng@gmail.com>
 
 # Default baseimage settings
 ENV HOME /root

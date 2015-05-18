@@ -30,10 +30,10 @@ RUN mkdir -p                                                            /var/www
 
 # Configure PHP
 RUN sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/"                  /etc/php5/fpm/php.ini
-RUN sed -i "s/;date.timezone =.*/date.timezone = Asia\/Kolkata/"        /etc/php5/fpm/php.ini
+RUN sed -i "s/;date.timezone =.*/date.timezone = PRC/"                  /etc/php5/fpm/php.ini
 RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g"                 /etc/php5/fpm/php-fpm.conf
 RUN sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/"                  /etc/php5/cli/php.ini
-RUN sed -i "s/;date.timezone =.*/date.timezone = Asia\/Kolkata/"        /etc/php5/cli/php.ini
+RUN sed -i "s/;date.timezone =.*/date.timezone = PRC/"                  /etc/php5/cli/php.ini
 RUN php5enmod mcrypt
 
 # Add nginx service
