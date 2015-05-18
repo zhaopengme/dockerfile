@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.16
+FROM zhaopengme/baseimage:latest
 MAINTAINER mikey.zhaopeng <user.zhaopeng@gmail.com>
 
 # Add PHP volume

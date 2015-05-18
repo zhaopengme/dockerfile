@@ -1,21 +1,7 @@
-FROM phusion/baseimage:0.9.16
-
-# Ensure UTF-8
-RUN locale-gen en_US.UTF-8
-ENV LANG       en_US.UTF-8
-ENV LC_ALL     en_US.UTF-8
+FROM zhaopengme/baseimage:latest
+MAINTAINER mikey.zhaopeng <user.zhaopeng@gmail.com>
 
 ENV HOME /root
-
-RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-
-CMD ["/sbin/my_init"]
-
-# Change source
-RUN cp /etc/apt/sources.list /etc/apt/sources.list.backup
-RUN rm /etc/apt/sources.list
-ADD build/source/alisources.list                                                 /etc/apt/sources.list
-
 
 # Nginx-PHP Installation
 RUN apt-get update

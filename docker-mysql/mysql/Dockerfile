@@ -1,16 +1,9 @@
-FROM phusion/baseimage:0.9.16
+FROM zhaopengme/baseimage:latest
 MAINTAINER mikey.zhaopeng <user.zhaopeng@gmail.com>
 
 # Default baseimage settings
 ENV HOME /root
-RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-CMD ["/sbin/my_init"]
 ENV DEBIAN_FRONTEND noninteractive
-
-# Change source
-RUN cp /etc/apt/sources.list /etc/apt/sources.list.backup
-RUN rm /etc/apt/sources.list
-ADD build/source/alisources.list                                                 /etc/apt/sources.list
 
 # Update software list, install MySQL
 RUN apt-get update && \
