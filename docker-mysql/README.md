@@ -9,19 +9,28 @@ Docker mysql with data only container approach
 
 Step one (Build the data container):
 
-    docker build -t zhaopengme/docker-mysql-data ./docker-mysql-data
+    docker build -t zhaopengme/mysql-data ./mysql-data
 
 Step two (Build the mysql container):
 
-    docker build -t zhaopengme/docker-mysql ./docker-mysql
+    docker build -t zhaopengme/mysql ./mysql
 
 Step three (Run the data container):
     
-    docker run -v /c/Users/Administrator/Code/User/Go/docker/data/mysql-data:/var/lib/mysql --name data-container zhaopengme/docker-mysql-data echo "MySQL data container"
+    docker run \
+    -v /c/Users/Code/User/Go/docker/dockerfile/docker-mysql/data-templdate/var/lib/mysql:/var/lib/mysql \
+    --name mysql-data-container \
+    zhaopengme/mysql-data \
+    echo "MySQL data container"
 
 Step four (Run the mysql container with data volumes):
 
-    docker run -e MYSQL_PASS="12354" -p 3306:3306 -d --name db --volumes-from data-container zhaopengme/docker-mysql
+    docker run \
+    -e MYSQL_PASS="12354" \
+    -d -p 3306:3306  \
+    --name mysql \
+    --volumes-from mysql-data-container \
+    zhaopengme/mysql
 
 # Backups
 

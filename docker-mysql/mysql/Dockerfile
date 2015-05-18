@@ -23,6 +23,7 @@ RUN apt-get update && \
 # Configure MySQL
 RUN rm -rf                                                              /var/lib/mysql/*
 # Remove syslog configuration
+RUN mkdir -p                                                            /etc/mysql/conf.d/
 RUN rm                                                                  /etc/mysql/conf.d/mysqld_safe_syslog.cnf
 # Add MySQL configuration
 ADD build/my.cnf                                                        /etc/mysql/conf.d/my.cnf
