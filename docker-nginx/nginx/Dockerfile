@@ -16,15 +16,11 @@ RUN apt-get update && \
 
 # Configure nginx
 RUN echo "daemon off;" >>                     /etc/nginx/nginx.conf
-RUN mkdir -p                                  /var/www
 RUN sed -i "s/sendfile on/sendfile off/"      /etc/nginx/nginx.conf
 
 # Add nginx service
 RUN mkdir                                     /etc/service/nginx
 ADD build/run.sh                              /etc/service/nginx/run
 RUN chmod +x                                  /etc/service/nginx/run
-
-# Add nginx and MySQL volumes
-VOLUME ["/var/www", "/etc/nginx/sites-available", "/etc/nginx/sites-enabled"]
 
 EXPOSE 80
