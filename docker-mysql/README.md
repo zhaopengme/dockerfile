@@ -16,7 +16,11 @@ Step two (Build the mysql container):
     docker build -t zhaopengme/mysql ./mysql
 
 Step three (Run the data container):
-    
+    docker run \
+    --name mysql-data-container \
+    zhaopengme/mysql-data \
+    echo "MySQL data container"
+
     docker run \
     -v /c/Users/Code/User/Go/docker/dockerfile/docker-mysql/data-templdate/var/lib/mysql:/var/lib/mysql \
     --name mysql-data-container \
