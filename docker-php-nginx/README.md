@@ -22,11 +22,18 @@ Step three (Run the data container):
         zhaopengme/php-nginx-data \
         echo "php-nginx data container"
 
+    docker run \
+        --name php-nginx-data-container  \
+        zhaopengme/php-nginx-data \
+        echo "php-nginx data container"
+
+
+
 Step four (Run the mysql container with data volumes):
     
     docker run  \
-        -d -p 80:80  \
-        --name php-nginx   \
+        -d -p 802:80  \
+        --name php-nginx2   \
         --volumes-from php-nginx-data-container \
         zhaopengme/php-nginx
 
