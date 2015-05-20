@@ -11,7 +11,7 @@ ADD build/source/alisources.list /etc/apt/sources.list
 
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y vim curl wget lrzsz
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y vim curl wget lrzsz unzip
 
 # ...put your own build instructions here...
 
