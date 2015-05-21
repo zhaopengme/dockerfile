@@ -1,51 +1,52 @@
-# php-nginx
-Dockerized php &amp; nginx based on phusion/baseimage-docker
+# docker-php-nginx
+依赖 docker-baseimage,约定采用数据容器的方式,挂载目录 `/var/www`, `/etc/nginx/sites-available`, `/etc/nginx/sites-enabled`
 
-php-nginx
-============
+## 使用
 
-Docker mysql with data only container approach
-
-Step one (Build the data container):
+### step 1
+编译数据容器
 
     docker build -t zhaopengme/php-nginx-data ./php-nginx-data
 
-Step two (Build the mysql container):
-
+### step 2
+编译 php-nginx 容器
+    
     docker build -t zhaopengme/php-nginx ./php-nginx
 
-Step three (Run the data container):
-    
-    docker run \
-        -v /c/Users/Code/User/Go/docker/dockerfile/docker-php-nginx/data-templdate/var/www:/var/www:rw \
-        --name php-nginx-data-container  \
-        zhaopengme/php-nginx-data \
-        echo "php-nginx data container"
 
-    docker run \
-        --name php-nginx-data-container  \
-        zhaopengme/php-nginx-data \
-        echo "php-nginx data container"
+### step 3
+运行数据容器
 
+1. 将数据挂载到主机.
 
+        docker run \
+            -v `pwd`/var/www:/var/www \
+            --name php-nginx-data-container  \
+            zhaopengme/php-nginx-data \
+            echo "php-nginx data container"
 
-Step four (Run the mysql container with data volumes):
-    
-    docker run  \
-        -d -p 802:80  \
-        --name php-nginx2   \
-        --volumes-from php-nginx-data-container \
-        zhaopengme/php-nginx
+2. 将数据挂载到数据容器.
 
-# Backups
+        docker run \
+            --name php-nginx-data-container  \
+            zhaopengme/php-nginx-data \
+            echo "php-nginx data container"
 
-enter or run a command in the data container as a normal container:
+### step 4
+运行 nginx 容器
 
-    docker run -it --volumes-from mysql-data busybox /bin/sh
+1. 不使用数据容器
 
-# Databases & users
+        docker run  \
+            -d -p 802:80  \
+            --name php-nginx   \
+            zhaopengme/php-nginx
+            
+2. 使用数据容器
 
-Add databases and users with pass to ``create_Database_and_users.sh`` on lines:
+        docker run  \
+            -d -p 802:80  \
+            --name php-nginx   \
+            --volumes-from php-nginx-data-container \
+            zhaopengme/php-nginx
 
-    DATABASES=("database1" "database2")
-    declare -A USERS=(["user1"]="pass1" ["user2"]="pass2")

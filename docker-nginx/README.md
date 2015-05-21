@@ -1,5 +1,5 @@
 # docker-nginx
-依赖 docker-baseimage,约定采用数据容器的方式,挂在目录 `/var/www`, `/etc/nginx/sites-available`, `/etc/nginx/sites-enabled`
+依赖 docker-baseimage,约定采用数据容器的方式,挂载目录 `/var/www`, `/etc/nginx/sites-available`, `/etc/nginx/sites-enabled`
 
 ## 使用
 
@@ -20,8 +20,6 @@
 
         docker run \
             -v `pwd`/var/www:/var/www \
-            -v `pwd`/etc/nginx/sites-available:/etc/nginx/sites-available \
-            -v `pwd`/etc/nginx/sites-enabled:/etc/nginx/sites-enabled \
             --name nginx-data-container \
             zhaopengme/nginx-data \
             echo "nginx data container"
