@@ -19,7 +19,7 @@
 1. 将数据挂载到主机.
 
         docker run \
-            -v `pwd`/var/www:/var/www \
+            -v `pwd`/data/var/www:/var/www \
             --name nginx-data-container \
             zhaopengme/nginx-data \
             echo "nginx data container"
