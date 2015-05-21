@@ -20,7 +20,7 @@
 1. 将数据挂载到主机.
 
         docker run \
-            -v `pmd`/data/var/www:/var/www \
+            -v `pwd`/data/var/www:/var/www \
             --name multisite-wordpress-php-nginx-data-container  \
             zhaopengme/multisite-wordpress-php-nginx-data \
             echo "multisite-wordpress-php-nginx data container"

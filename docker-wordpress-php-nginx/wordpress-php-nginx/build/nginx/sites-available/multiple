@@ -1,0 +1,15 @@
+# URL: add a permanent redirect if required.
+# Change example to your domain name or ip
+
+#server {
+#    server_name example.com;
+#    return 301 http://www.example.com$request_uri;
+#}
+
+server {
+    server_name localhost;
+    root /var/www;
+    access_log /var/log/nginx/localhost.access.log;
+    error_log /var/log/nginx/localhost.error.log;
+    include sites-available/global/*.conf;
+}

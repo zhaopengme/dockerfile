@@ -1,5 +1,5 @@
 #!/bin/sh
 if [ ! -f /var/www/index.php ]; then
-    echo "=> move wordpress from  /apps to /var/www"
-    cp -r /apps/wordpress/* /var/www
+    echo "=> move wordpress from  /build to /var/www"
+    cp -R /build/wordpress/* /var/www
 fi

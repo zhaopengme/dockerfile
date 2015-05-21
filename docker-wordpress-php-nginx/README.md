@@ -21,6 +21,7 @@
 
         docker run \
             -v `pwd`/data/var/www:/var/www \
+            -v `pwd`/data/etc/nginx/sites-available:/etc/nginx/sites-available \
             --name wordpress-php-nginx-data-container  \
             zhaopengme/wordpress-php-nginx-data \
             echo "wordpress-php-nginx data container"
