@@ -5,7 +5,6 @@ MAINTAINER mikey.zhaopeng <user.zhaopeng@gmail.com>
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 
-
 # Update software list, install nginx & clear cache
 RUN apt-get update && \
     apt-get install -y nginx && \
@@ -17,6 +16,7 @@ RUN apt-get update && \
 # Configure nginx
 RUN echo "daemon off;" >>                     /etc/nginx/nginx.conf
 RUN sed -i "s/sendfile on/sendfile off/"      /etc/nginx/nginx.conf
+ADD html.nginx.conf                           /etc/nginx/sites-available/default
 
 # Add nginx service
 RUN mkdir                                     /etc/service/nginx
