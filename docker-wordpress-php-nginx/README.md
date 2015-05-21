@@ -1,49 +1,52 @@
-# php-nginx
-Dockerized php &amp; nginx based on phusion/baseimage-docker
+# docker-wordpress-php-nginx
+依赖 zhaopengme/php-nginx ,约定采用数据容器的方式,挂载目录 `/var/www`, `/etc/nginx/sites-available`, `/etc/nginx/sites-enabled`. 预先将下载的 wordpresss 放置到 `/apps/` 目录下,在运行容器的时候,从 `/apps/` 复制到 `/var/www`, 避免挂载了目录后, 将 `/var/www` 覆盖掉. 
 
-php-nginx
-============
 
-Docker mysql with data only container approach
+## 使用
 
-Step one (Build the data container):
+### step 1
+编译数据容器
 
     docker build -t zhaopengme/wordpress-php-nginx-data ./wordpress-php-nginx-data
 
-Step two (Build the mysql container):
-
+### step 2
+编译 php-nginx 容器
+    
     docker build -t zhaopengme/wordpress-php-nginx ./wordpress-php-nginx
 
-Step three (Run the data container):
-    
-    docker run \
-        -v /c/Users/Code/User/Go/docker/dockerfile/wordpress-php-nginx/data-templdate/var/www:/var/www:rw \
-        --name wordpress-php-nginx-data-container  \
-        zhaopengme/wordpress-php-nginx-data \
-        echo "wordpress-php-nginx data container"
-    docker run \
-        --name wordpress-php-nginx-data-container  \
-        zhaopengme/wordpress-php-nginx-data \
-        echo "wordpress-php-nginx data container"
+### step 3
+运行数据容器
 
+1. 将数据挂载到主机.
 
-Step four (Run the mysql container with data volumes):
-    
-    docker run  \
-        -d -p 80:80  \
-        --name wordpress-php-nginx   \
-        --volumes-from wordpress-php-nginx-data-container \
-        zhaopengme/wordpress-php-nginx
+        docker run \
+            -v `pwd`/var/www:/var/www:rw \
+            --name wordpress-php-nginx-data-container  \
+            zhaopengme/wordpress-php-nginx-data \
+            echo "wordpress-php-nginx data container"
 
-# Backups
+2. 将数据挂载到数据容器.
 
-enter or run a command in the data container as a normal container:
+        docker run \
+            --name wordpress-php-nginx-data-container  \
+            zhaopengme/wordpress-php-nginx-data \
+            echo "wordpress-php-nginx data container"
 
-    docker run -it --volumes-from mysql-data busybox /bin/sh
+### step 4
+运行 nginx 容器
 
-# Databases & users
+1. 不使用数据容器
 
-Add databases and users with pass to ``create_Database_and_users.sh`` on lines:
+        docker run  \
+            -d -p 80:80  \
+            --name wordpress-php-nginx   \
+            zhaopengme/wordpress-php-nginx
+            
+2. 使用数据容器
 
-    DATABASES=("database1" "database2")
-    declare -A USERS=(["user1"]="pass1" ["user2"]="pass2")
+        docker run  \
+            -d -p 80:80  \
+            --name wordpress-php-nginx   \
+            --volumes-from wordpress-php-nginx-data-container \
+            zhaopengme/wordpress-php-nginx
+
