@@ -8,7 +8,7 @@ ADD ./build/01_movewp.sh /etc/my_init.d/01_movewp.sh
 
 RUN rm -rf /apps
 RUN mkdir -p /apps
-RUN curl -sL http://172.30.10.77/wp.tar.gz | tar xzC /apps
+RUN curl -sL https://cn.wordpress.org/wordpress-4.2.2-zh_CN.tar.gz | tar xzC /apps
 
 ADD ./build/wp-config.php /apps/wordpress/wp-config.php
 WORKDIR /var/www

@@ -20,7 +20,7 @@
 1. 将数据挂载到主机.
 
         docker run \
-            -v `pwd`/data/var/www:/var/www:rw \
+            -v `pwd`/data/var/www:/var/www \
             --name wordpress-php-nginx-data-container  \
             zhaopengme/wordpress-php-nginx-data \
             echo "wordpress-php-nginx data container"

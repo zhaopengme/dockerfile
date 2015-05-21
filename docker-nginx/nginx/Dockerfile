@@ -16,7 +16,7 @@ RUN apt-get update && \
 # Configure nginx
 RUN echo "daemon off;" >>                     /etc/nginx/nginx.conf
 RUN sed -i "s/sendfile on/sendfile off/"      /etc/nginx/nginx.conf
-ADD html.nginx.conf                           /etc/nginx/sites-available/default
+ADD build/default                     /etc/nginx/sites-available/default
 
 # Add nginx service
 RUN mkdir                                     /etc/service/nginx
