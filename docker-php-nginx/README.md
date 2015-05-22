@@ -45,7 +45,7 @@
 2. 使用数据容器
 
         docker run  \
-            -d -p 802:80  \
+            -d -p 80:80  \
             --name php-nginx   \
             --volumes-from php-nginx-data-container \
             zhaopengme/php-nginx

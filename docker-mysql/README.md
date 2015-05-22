@@ -21,7 +21,7 @@ mysql 5.6
 
 1. 将数据挂载到主机.
 
-        docker run \  
+        docker run \
             -v `pwd`/data/var/lib/mysql:/var/lib/mysql \
             --name mysql-data-container \
             zhaopengme/mysql-data \
